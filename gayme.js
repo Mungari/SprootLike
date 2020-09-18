@@ -1,73 +1,67 @@
 var row = 24;
 var col = 80;
 var floor = ".";
+var wall = "#";
+var canvas = "";
 var player = {
   pos_x: Math.floor(Math.random() * (row - 0) + 0),
   pos_y: Math.floor(Math.random() * (col - 0) + 0),
   glyph: "@"
 }
 function draw(){
-  var canvas = document.getElementById("gameBoard");
-  canvas.value = "";
+  canvas.innerHTML = "";
     for (i = 0; i < row; i++){
       for(j = 0; j < col; j++){
         if(i == player.pos_x && j == player.pos_y){
-          canvas.value += player.glyph;
+          canvas.innerText += player.glyph;
         }
         else{
-          canvas.value += "."
+          canvas.innerText += wall
         }
       }
-      canvas.value += "\n"
+      canvas.innerText += "\n"
     }  
 }
 
 function can_move(p_target_x, p_target_y){
-  if(p_target_x > 23 || p_target_x < 0){
+  if(p_target_x > row-1 || p_target_x < 0){
     return false
   }
-  if(p_target_y > 79 || p_target_y < 0){
+  if(p_target_y > col-1 || p_target_y < 0){
     return false
   }
   return true;
 }
 
 window.addEventListener('load', (event) => {
+  canvas = document.getElementById("gameCanvas");
   draw()
 });
 window.addEventListener('keypress', (event) => {
   var key = event.key;
   switch(key) {
     case "w": 
-      if(can_move(player.pos_x -= 1, 0)){
+      if(can_move(player.pos_x - 1, 0)){
+        player.pos_x -= 1
         draw()
-      }
-      else{
-        player.pos_x += 1
       }
     break;
     case "a":
-      if(can_move(0, player.pos_y -= 1)){
+      if(can_move(0, player.pos_y - 1)){
+        player.pos_y -= 1
         draw()
-      }
-      else{
-        player.pos_y += 1
       }
     break;
     case "s":
-      if(can_move(player.pos_x += 1, 0)){
+      if(can_move(player.pos_x + 1, 0)){
+        player.pos_x += 1
         draw()
-      }
-      else{
-        player.pos_x -= 1
       }
     break;
     case "d":
-      if(can_move(0, player.pos_y += 1)){
+      if(can_move(0, player.pos_y + 1)){
+        player.pos_y += 1
         draw()
-      }
-      else{
-        player.pos_y -= 1
       }
     break;
   }
