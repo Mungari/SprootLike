@@ -1,13 +1,19 @@
 #gameCanvas{
-    font-family: monospace;
+    font-family: 'Courier New', Courier, monospace ;
     resize: none;
     overflow: hidden;
     background-color: black;
-    color: white;
-    display: flex;
+    color: #ffffff;
+    display: inline-block;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
+    margin-left: 55vh;
     margin-right: auto;
     margin-top: 25vh;
+    text-align: center;
+}
+#player{
+    font-family: 'Courier New', Courier, monospace ;
+    color: yellow;
+    font-weight: bold;
 }
